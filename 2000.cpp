@@ -6,13 +6,12 @@
 //
 //Output
 //对于每组输入数据，输出一行，字符中间用一个空格分开。
-
-#include<iostream>
-#include<cstdio>
+#include "problem.h"
+#include <iostream>
 
 using namespace std;
 
-int main()
+void problem2000()
 {
     int i, j;
     char a[4], t;
@@ -28,5 +27,4 @@ int main()
                 }
         cout << a[0] << " " << a[1] << " " << a[2] << endl;
     }
-    return 0;
 }
