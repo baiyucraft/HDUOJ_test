@@ -8,7 +8,6 @@
 //对于每组输入数据，输出一个平均值序列，每组输出占一行。
 #include "problem.h"
 #include <iostream>
-#include <iomanip>
 using namespace std;
 
 void problem2015() {

@@ -16,6 +16,9 @@ int main() {
 	//problem2012();
 	//problem2013();
 	//problem2014();
-	problem2015();
+	//problem2015();
+	//problem2016();
+	//problem2017();
+	problem2018();
 	return 0;
 }
