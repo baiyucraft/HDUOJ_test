@@ -25,7 +25,7 @@ void problem2016() {
 			cin >> p[i++];
 		}
 		min = p[0];
-		for(i=1;i<n;i++)
+		for (i = 1; i < n; i++)
 			if (min > p[i]) {
 				min = p[i];
 				j = i;

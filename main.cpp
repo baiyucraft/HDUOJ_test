@@ -19,6 +19,23 @@ int main() {
 	//problem2015();
 	//problem2016();
 	//problem2017();
-	problem2018();
+	//problem2018();
+	//problem2019();
+	//problem2020();
+	//problem2021();
+	//problem2022();
+	//problem2023();
+	//problem2024();
+	//problem2025();
+	//problem2026();
+	//problem2027();
+	//problem2028();
+	//problem2029();
+	//problem2030();
+	//problem2031();
+	//problem2032();
+	//problem2033();
+	//problem2034();
+	problem2035();
 	return 0;
 }
