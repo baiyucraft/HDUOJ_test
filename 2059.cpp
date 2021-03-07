@@ -19,3 +19,100 @@
 #include "problem.h"
 #include <iostream>
 using namespace std;
+const double INF = 0xfffff;//0x代表十六进制
+
+void problem2059() {
+	// 赛道长度L
+	double L, len;
+	// N充电站的个数，C电动车冲满电以后能行驶的距离，T每次充电所需要的时间
+	int N, C, T;
+	// Vr兔子跑步的速度，Vt1乌龟开电动车的速度，Vt2乌龟脚蹬电动车的速度
+	double Vr, Vt1, Vt2;
+	int i, j, time1, time2;
+	while (cin >> L) {
+		cin >> N >> C >> T;
+		cin >> Vr >> Vt1 >> Vt2;
+		// 充电站p
+		int* p = new int[N + 2];
+		double* DP = new double[N + 2];
+		p[0] = 0;
+		for (i = 1; i <= N; i++)
+			cin >> p[i];
+		p[N + 1] = L;
+		//起点到起点最小耗费时间为0
+		DP[0] = 0;
+		for (i = 1; i <= N + 1; i++){
+			//因为到第i个加电站最小耗费时间未知所以赋值无穷大
+			DP[i] = INF;
+			//倒序枚举I之前的所有充电站
+			for (j = i - 1; j >= 0; j--) {
+				len = p[i] - p[j];
+				//如果是起点的这个特别的充电站
+				if (j == 0) 
+					if (len <= C) 
+						DP[i] = DP[i] < DP[0] + len / Vt1 ? DP[i] : DP[0] + len / Vt1;
+					//特判，状态转移为dp[i]=min(dp[i],dp[0]+s] s为起点直接开到i的时间
+					else 
+						DP[i] = DP[i] < DP[0] + C / Vt1 + (len - C) / Vt2 ? DP[i] : DP[0] + C / Vt1 + (len - C) / Vt2;
+				else { 
+					time1 = T; 
+					time2 = 0;  
+					time2 += len / Vt2;
+					if (len <= C) 
+						time1 += len / Vt1;
+					else 
+						time1 = time1 + len / Vt1 + (len - C) / Vt2;
+					//状态转移
+					DP[i] = DP[i] < DP[j] + time2 ? DP[i] : DP[j] + time2;
+					DP[i] = DP[i] < DP[j] + time1 ? DP[i] : DP[j] + time1;
+				}
+			}
+		}
+		DP[N + 1] < (L / Vr)? cout << "What a pity rabbit!" << endl: cout << "Good job,rabbit!" << endl;
+		delete[] p, DP;
+	}
+}
+
+/*#include<stdio.h>
+#include<math.h>
+#include<string.h>
+#include<ctype.h>
+#include<limits.h>
+//画个数轴想想，好理解 ，动态规划 
+double min(double a, double b) {
+	return a > b ? b : a;
+}
+int main() {
+	double L, N, C, T, VR, VT1, VT2, time, ti;
+	double p[102], dp[102];
+	while (scanf("%lf", &L) != EOF) {
+		scanf("%lf%lf%lf", &N, &C, &T);
+		scanf("%lf%lf%lf", &VR, &VT1, &VT2);
+		for (int i = 1; i <= N; i++) {
+			scanf("%lf", &p[i]);
+		}
+		p[0] = 0;      // 将起点看做第0个供电站 
+		p[(int)N + 1] = L;   //终点看做最后一个供电站 
+		dp[0] = 0;    //起点到起点的时间为0 
+		for (int i = 1; i <= N + 1; i++) {
+			dp[i] = ULONG_MAX;   //最大 
+			for (int j = 0; j < i; j++) {
+				double len = p[i] - p[j];
+				if (len > C) {
+					time = (len - C) / VT2 + C / VT1;
+				}
+				else {
+					time = len / VT1;
+				}
+				time += dp[j];   //加上此站之前的最短时间
+				if (j > 0) {
+					time += T;
+				}
+				dp[i] = min(dp[i], time);
+			}
+		}
+		ti = L / VR;
+		if (dp[(int)N + 1] > ti) printf("Good job,rabbit!\n");
+		else printf("What a pity rabbit!\n");
+	}
+}*/

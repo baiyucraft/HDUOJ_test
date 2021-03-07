@@ -58,6 +58,15 @@ int main() {
 	//problem2055();
 	//problem2056();
 	//problem2057();
-	problem2058();
+	//problem2058();
+	//problem2059();
+	//problem2060();
+	//problem2061();
+	//problem2062();
+	//problem2063();
+	//problem2064();
+	//problem2065();
+	//problem2066();
+	problem2067();
 	return 0;
 }
